@@ -24,9 +24,9 @@ def sacarEspacios(lista):
             if letra!='\n':
 
                 npalabra=npalabra+letra
-        #cuando termine la palabra sin '/n' va a agregarla a la nlista y va a volver a repetir el proceso con las demas palabras de la lista dada
+        #cuando termine de agregar las letras a la palabra va a agregarla a la lista nueva (nlista)
         nlista.append(npalabra)
-    #devuelve una lista de las npalabras
+    #devuelve nlista
     return nlista
 
 
@@ -45,35 +45,37 @@ def lectura(archivo, salida, largo):
 
 
 def revision(palabraCorrecta, palabra, correctas, incorrectas, casi):
-    # utilizo un condicional para saber si tienen ambas palabras el mismo largo sino que el return  de false
-    if len(palabraCorrecta)==len(palabra):
-        # con otro condicional averiguo si ambas palabras son iguals y si es asi que agrege a correctas todas las letras y de un True en el return
-        if palabraCorrecta == palabra:
 
-            for letras in palabra:
+        # con otro condicional averiguo si ambas palabras son iguals y si es asi que agregue a correctas todas las letras y de un True en el return
+    if palabraCorrecta == palabra:
 
-                correctas.append(letras)
+        for letras in palabra:
 
-            return True
+            correctas.append(letras)
+
+        return True
         # si no es asi, hago que revise cada letra de la palabra y la agregue donde debe
-        else:
-
-            for i in range(len(palabra)):
+    else:
+        for i in range(len(palabra)):
                 # en este condicional va a agregar las letras correctas en la lista correctas
-                if palabra[i]==palabraCorrecta[i]:
+            if palabra[i]==palabraCorrecta[i]:
+                correctas.append(palabra[i])
 
-                 correctas.append(palabra[i])
                 #en este condicional va a agregar las letras incorrectas en el lugar pero que estan en la palabra en la lista casi
-                elif palabra[i] in palabraCorrecta:
+            elif palabra[i] in palabraCorrecta:
+                casi.append(palabra[i])
 
-                    casi.append(palabra[i])
                 #en este directamente agrega las letras que no estan en la palabra en incorrectas
-                else:
+            else:
+                incorrectas.append(palabra[i])
 
-                    incorrectas.append(palabra[i])
-
-    #por ultimo devuelve un return False si es que no salio antes por el True
+    #por ultimo devuelve un return False si la palabra no era correcta
     return False
 
-
+def controlPalabra(palabraC,palabraU,palabrasU,largo,diccionario):
+    if palabraU  not in palabrasU:
+        if palabraU in diccionario:
+            if len(palabraC)==len(palabraU):
+                return True
+    return False
 

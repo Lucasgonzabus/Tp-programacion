@@ -16,7 +16,7 @@ def main():
         #pygame.mixer.init()
 
         #Preparar la ventana
-        pygame.display.set_caption("La escondida...")
+        pygame.display.set_caption("Adivina la Palabra")
         screen = pygame.display.set_mode((ANCHO, ALTO))
 
         #tiempo total del juego
@@ -68,12 +68,26 @@ def main():
                     if e.key == K_BACKSPACE:
                         palabraUsuario = palabraUsuario[0:len(palabraUsuario)-1]
                     if e.key == K_RETURN:
-                            #falta hacer un control para que sea una palabra de la longitud deseada
-                            #falta controlar que la palabra este en el diccionario
-                            gano = revision(palabraCorrecta, palabraUsuario, correctas, incorrectas, casi)
-                            ListaDePalabrasUsuario.append(palabraUsuario)
-                            palabraUsuario = ""
-                            intentos -= 1
+
+                            #utilizo la funcion controlPalabra para saber si la palabra esta en el diccionario y si su largo corresponde al de la palabra correcta
+                            if controlPalabra(palabraCorrecta,palabraUsuario,ListaDePalabrasUsuario,LARGO,listaPalabrasDiccionario)==True:
+                                gano = revision(palabraCorrecta, palabraUsuario, correctas, incorrectas, casi)
+                                ListaDePalabrasUsuario.append(palabraUsuario)
+                                palabraUsuario = ""
+                                intentos -= 1
+
+                            else:
+                                palabraUsuario =''
+                    if gano==True:
+                        puntos+=100
+                        palabraCorrecta=nuevaPalabra(listaPalabrasDiccionario)
+                        print(palabraCorrecta)
+                        ListaDePalabrasUsuario = []
+                        correctas = []
+                        incorrectas = []
+                        casi = []
+                        intentos=5
+                        gano=False
 
             segundos = TIEMPO_MAX - pygame.time.get_ticks()/1000
 
