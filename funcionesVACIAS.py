@@ -13,7 +13,7 @@ def nuevaPalabra(listas):
 def lectura(archivo, salida, largo):
     # leo todo el archivo por completo y cargo sus palabras en text1
     text1= archivo.readlines()
-    # usando la funcion que hice antes le saco los '/n' a las palabras con el largo estipulado en los parametros y las agrego a salida
+    # usando la funcion sacarEspacios() le saco los '/n' a las palabras de text1, para agregar a 'salida' las palabras con la misma longitud que 'largo'
     for palabra in text1:
 
         if len(sacarEspacios(palabra))==largo:
