@@ -115,6 +115,4 @@ def dibujar(screen, listaDePalabrasUsuario, palabraUsuario, puntos, segundos, ga
                 screen.blit(defaultFont.render(letra, 1, color), (10 + x, ALTO/1.5 + y))
                 x += TAMANNO_LETRA
         y += TAMANNO_LETRA
-def message(msg, color):
-    mesg = font_style.render(msg, True, color)
-    dis.blit(mesg, [dis_width / 6, dis_height / 3])
+
