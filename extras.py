@@ -99,7 +99,7 @@ def dibujar(screen, listaDePalabrasUsuario, palabraUsuario, puntos, segundos, ga
         #esta parte la modifique para que las letras de cada lista tengan cada una un color diferente
         for letra in abc:
             if letra in correctas:  #las letras de la lista 'correctas' seran verdes
-                color= COLOR_LETRAS
+                color= COLOR_VERDE
                 screen.blit(defaultFont.render(letra, 1, color), (10 + x, ALTO/1.5 + y))
                 x += TAMANNO_LETRA
             elif letra in casi:     #las letras de la lista 'casi' seran verdes
@@ -115,7 +115,6 @@ def dibujar(screen, listaDePalabrasUsuario, palabraUsuario, puntos, segundos, ga
                 screen.blit(defaultFont.render(letra, 1, color), (10 + x, ALTO/1.5 + y))
                 x += TAMANNO_LETRA
         y += TAMANNO_LETRA
-
-
-
-
+def message(msg, color):
+    mesg = font_style.render(msg, True, color)
+    dis.blit(mesg, [dis_width / 6, dis_height / 3])

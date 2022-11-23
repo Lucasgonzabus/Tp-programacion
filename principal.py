@@ -68,8 +68,8 @@ def main():
                     if e.key == K_BACKSPACE:
                         palabraUsuario = palabraUsuario[0:len(palabraUsuario)-1]
                     if e.key == K_RETURN:
-
-                            #utilizo la funcion controlPalabra para saber si la palabra esta en el diccionario y si su largo corresponda al de la palabra correcta
+                            # agrego un condicional para asegurarme de que si la funcion controlDePalabra me devuelve True,
+                            # entonces que me muestre la palabra en pantalla aun
                             if controlDePalabra(palabraCorrecta,palabraUsuario,ListaDePalabrasUsuario,listaPalabrasDiccionario)==True:
                                 gano = revision(palabraCorrecta, palabraUsuario, correctas, incorrectas, casi)
                                 ListaDePalabrasUsuario.append(palabraUsuario)
@@ -77,7 +77,8 @@ def main():
                                 intentos -= 1
                             else:
                                 palabraUsuario =''
-
+                    #este condicional es para que en caso de que me de'revision' True, sume 10 puntos, vacie las listas,reinicie los intentos,
+                    # me de una nueva palabra para adivinar y la variable 'gano' vuelva a false asi continuo adivinando palabras hasta que no tenga mas tiempo
                     if gano==True:
                         puntos+=10
                         palabraCorrecta=nuevaPalabra(listaPalabrasDiccionario)
@@ -99,6 +100,7 @@ def main():
             dibujar(screen, ListaDePalabrasUsuario, palabraUsuario, puntos,segundos, gano, correctas, incorrectas, casi)
 
             pygame.display.flip()
+
 
         while 1:
             #Esperar el QUIT del usuario
