@@ -91,20 +91,30 @@ def dibujar(screen, listaDePalabrasUsuario, palabraUsuario, puntos, segundos, ga
         screen.blit(defaultFontGrande.render(palabra, 1, COLOR_LETRAS), (ANCHO//2-len(palabra)*TAMANNO_LETRA_GRANDE//4,20 + 80 * pos))
         pos += 1
 
-    #muestra el abcdario, falta ponerle color a las letras
+    #muestra el abcdario
     abcdario = ["qwertyuiop", "asdfghjklm", "zxcvbnm"]
     y=0
     for abc in abcdario:
         x = 0
+        #esta parte la modifique para que las letras de cada lista tengan cada una un color diferente
         for letra in abc:
-            color = COLOR_LETRAS
-            screen.blit(defaultFont.render(letra, 1, color), (10 + x, ALTO/1.5 + y))
-            x += TAMANNO_LETRA
+            if letra in correctas:  #las letras de la lista 'correctas' seran verdes
+                color= COLOR_LETRAS
+                screen.blit(defaultFont.render(letra, 1, color), (10 + x, ALTO/1.5 + y))
+                x += TAMANNO_LETRA
+            elif letra in casi:     #las letras de la lista 'casi' seran verdes
+                color = COLOR_AZUL
+                screen.blit(defaultFont.render(letra, 1, color), (10 + x, ALTO/1.5 + y))
+                x += TAMANNO_LETRA
+            elif letra in incorrectas:  #las letras de la lista 'incorrectas' seran rojas
+                color = COLOR_ROJO
+                screen.blit(defaultFont.render(letra, 1, color), (10 + x, ALTO/1.5 + y))
+                x += TAMANNO_LETRA
+            else:                   # si no estan en una lista se veran de color gris
+                color = COLOR_TEXTO
+                screen.blit(defaultFont.render(letra, 1, color), (10 + x, ALTO/1.5 + y))
+                x += TAMANNO_LETRA
         y += TAMANNO_LETRA
-
-
-
-
 
 
 

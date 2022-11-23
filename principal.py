@@ -69,17 +69,17 @@ def main():
                         palabraUsuario = palabraUsuario[0:len(palabraUsuario)-1]
                     if e.key == K_RETURN:
 
-                            #utilizo la funcion controlPalabra para saber si la palabra esta en el diccionario y si su largo corresponde al de la palabra correcta
-                            if controlPalabra(palabraCorrecta,palabraUsuario,ListaDePalabrasUsuario,LARGO,listaPalabrasDiccionario)==True:
+                            #utilizo la funcion controlPalabra para saber si la palabra esta en el diccionario y si su largo corresponda al de la palabra correcta
+                            if controlDePalabra(palabraCorrecta,palabraUsuario,ListaDePalabrasUsuario,listaPalabrasDiccionario)==True:
                                 gano = revision(palabraCorrecta, palabraUsuario, correctas, incorrectas, casi)
                                 ListaDePalabrasUsuario.append(palabraUsuario)
                                 palabraUsuario = ""
                                 intentos -= 1
-
                             else:
                                 palabraUsuario =''
+
                     if gano==True:
-                        puntos+=100
+                        puntos+=10
                         palabraCorrecta=nuevaPalabra(listaPalabrasDiccionario)
                         print(palabraCorrecta)
                         ListaDePalabrasUsuario = []
@@ -88,6 +88,7 @@ def main():
                         casi = []
                         intentos=5
                         gano=False
+
 
             segundos = TIEMPO_MAX - pygame.time.get_ticks()/1000
 
